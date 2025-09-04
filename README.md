@@ -1,20 +1,30 @@
-<<<<<<< HEAD
-# glide
+# ✈️ Glide
 
-A new Flutter project.
+Glide is a Flutter application that helps users **search flights and hotels**, manage their **profiles**, and handle **authentication** seamlessly.  
+Built with **Flutter**, powered by **Supabase**, and structured using **Bloc (Cubit)** for state management.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📱 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 🔑 **Authentication** (Sign up, Login, Logout with Supabase)
+- 👤 **User Profile** (view & edit user details, profile picture upload)
+- ✈️ **Flights Search** (check available flights, filter results)
+- 🏨 **Hotels Search** (explore hotels, view details & availability)
+- 🗺️ **Map Integration** (powered by `flutter_map` & `latlong2`)
+- 🎠 **Onboarding Carousel** (smooth intro screens with `carousel_slider`)
+- ⚡ **State Management** with `flutter_bloc`
+- 💾 **Persistent Storage** with `shared_preferences`
+- 🌍 **Internationalization** with `intl`
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-=======
-# glide_application
->>>>>>> f9c63f3a328ba8a9be80006a1a29f1a08914cc96
+## 🛠️ Tech Stack
+
+- **Framework**: [Flutter](https://flutter.dev/)
+- **Backend**: [Supabase](https://supabase.com/)
+- **State Management**: [flutter_bloc](https://pub.dev/packages/flutter_bloc)
+- **Networking**: [Dio](https://pub.dev/packages/dio)
+- **Maps**: [flutter_map](https://pub.dev/packages/flutter_map), [latlong2](https://pub.dev/packages/latlong2)
+- **Storage**: [shared_preferences](https://pub.dev/packages/shared_preferences)
+- **Other Tools**: `image_picker`, `path`, `intl`, `smooth_page_indicator`
