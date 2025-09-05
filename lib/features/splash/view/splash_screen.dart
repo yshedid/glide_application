@@ -125,7 +125,7 @@ class _SplashScreenState extends State<SplashScreen>
                     Image.asset("assets/images/splash.png"),
                     //try Stack with Alignment(center) if it's not responsive
                     Positioned(
-                      bottom: MediaQuery.of(context).size.height * 0.153,
+                      bottom: MediaQuery.of(context).size.height * 0.146,
                       left: MediaQuery.of(context).size.width * 0.54,
                       child: Transform.scale(
                         scale: _dotScaleAnimation.value,

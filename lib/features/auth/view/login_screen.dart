@@ -28,6 +28,17 @@ class LoginScreen extends StatelessWidget {
             {
               buildNavigatorPushReplacement(context, screen: LayoutScreen());
             }
+          else if(state is LoginFailure)
+            {
+              log("Auth Error: ${state.errorMessage}");
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Login Failed: ${state.errorMessage}"),
+                  backgroundColor: Colors.red,
+                ),
+              );
+
+            }
         },
         builder: (context, state) => state is AuthLoading
             ? Center(child: CircularProgressIndicator())

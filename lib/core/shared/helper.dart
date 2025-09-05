@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
 buildNavigatorPush(context, {required Widget screen}) {
@@ -60,5 +63,26 @@ class UpperCaseTextFormatter extends TextInputFormatter {
       text: newValue.text.toUpperCase(),
       selection: newValue.selection,
     );
+  }
+}
+
+Future<XFile?> pickImageFromGallery() async {
+  try {
+    final XFile? image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1024,
+      maxHeight: 1024,
+      imageQuality: 80,
+    );
+
+    if (image == null) {
+      log('No image selected');
+      return null;
+    }
+
+    return image;
+  } catch (e) {
+    log('Error picking image: $e');
+    rethrow;
   }
 }

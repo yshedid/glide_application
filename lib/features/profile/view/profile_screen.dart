@@ -12,16 +12,37 @@ import '../view_model/profile_cubit.dart';
 import '../view_model/profile_states.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+   ProfileScreen({super.key});
+  String? profileImage;
 
   @override
   Widget build(BuildContext context) {
+    // Trip list with names and images
+    final List<Map<String, String>> trips = [
+      {
+        'name': 'London',
+        'image': 'assets/images/london.jpg',
+        'duration': '3 days'
+      },
+      {
+        'name': 'Paris',
+        'image': 'assets/images/paris.jpg',
+        'duration': '3 days'
+      },
+      {
+        'name': 'New York',
+        'image': 'assets/images/new_york.jpg',
+        'duration': '3 days'
+      },
+    ];
+
     return SingleChildScrollView(
       child: BlocConsumer<ProfileCubit, ProfileStates>(
         builder: (BuildContext context, state) {
           ProfileCubit profileCubit = ProfileCubit.get(context);
           if(profileCubit.currentUserName == null) {
-              profileCubit.initializeProfile();
+            profileCubit.initializeProfile();
+
           }
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,14 +90,14 @@ class ProfileScreen extends StatelessWidget {
                                     bottom: 0,
                                     right: 0,
                                     child: Container(
-                                      padding: const EdgeInsets.all(8),
+                                      padding: const EdgeInsets.all(6),
                                       decoration: BoxDecoration(
                                         color: Theme.of(context).primaryColor,
                                         shape: BoxShape.circle,
                                       ),
                                       child: const Icon(
                                         Icons.camera_alt,
-                                        size: 20,
+                                        size: 17,
                                         color: Colors.white,
                                       ),
                                     ),
@@ -122,23 +143,23 @@ class ProfileScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(16),
                               ),
                               child: Image.asset(
-                                "assets/images/beach.png",
+                                trips[index]['image']!,
                                 fit: BoxFit.cover,
                               ),
                             ),
                             SizedBox(height: 16),
                             Text(
-                              "Mountain Retreat",
+                              trips[index]['name']!,
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                             Text(
-                              "3 days",
+                              trips[index]['duration']!,
                               style: Theme.of(context).textTheme.bodySmall,
                             ),
                           ],
                         ),
 
-                        itemCount: 3,
+                        itemCount: trips.length,
                       ),
                     ),
                     Text(
@@ -209,6 +230,11 @@ class ProfileScreen extends StatelessWidget {
                 backgroundColor: Colors.red,
               ),
             );
+          }
+          if (state is ProfileSuccess) {
+            profileImage = state.imageUrl;
+            log("New Profile Image URLlllllll: $profileImage");
+
           }
         },
       ),

@@ -76,7 +76,9 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
           return SingleChildScrollView(
             child: Column(
               children: [
-                buildAppBar(context, "Saved"),
+                buildAppBar(context, "Saved",onTap: (){
+                  LayoutCubit.get(context).homeBody();
+                }),
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Column(

@@ -61,31 +61,35 @@ class ProfileService {
 
       final File imageFile = File(image.path);
       final String fileExt = extension(image.path);
-      // Use consistent filename for easy replacement
-      final String fileName = '${user.id}/profile$fileExt';
+
+      // Use unique filename with timestamp to avoid caching issues
+      final String timestamp = DateTime.now().millisecondsSinceEpoch.toString();
+      final String fileName = '${user.id}/profile_$timestamp$fileExt';
 
       log('Uploading file: $fileName');
       log('File exists: ${await imageFile.exists()}');
       log('File size: ${await imageFile.length()} bytes');
 
-      // Upload to Supabase Storage with upsert
+      // Upload to Supabase Storage
       await _supabase.storage.from('avatars').upload(
         fileName,
         imageFile,
         fileOptions: const FileOptions(
-          upsert: true, // Replace existing file
-          cacheControl: '3600',
+          cacheControl: '0', // Disable caching
         ),
       );
 
       log('✅ Storage upload successful');
 
       // Get public URL
-      final String publicUrl = _supabase.storage
+      final String baseUrl = _supabase.storage
           .from('avatars')
           .getPublicUrl(fileName);
 
-      log('Public URL: $publicUrl');
+      // Add cache-busting parameter
+      final String publicUrl = '$baseUrl?t=$timestamp';
+
+      log('Public URL with cache busting: $publicUrl');
 
       // Update user profile in database
       await _updateUserProfile(publicUrl);

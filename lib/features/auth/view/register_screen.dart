@@ -28,6 +28,16 @@ class RegisterScreen extends StatelessWidget {
             {
               buildNavigatorPushReplacement(context, screen: LayoutScreen());
             }
+          else if(state is RegisterFailure)
+            {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text("Registration Failed: ${state.errorMessage}"),
+                  backgroundColor: Colors.red,
+                ),
+              );
+
+            }
         },
         builder: (context, state) => state is AuthLoading
             ? Center(child: CircularProgressIndicator())

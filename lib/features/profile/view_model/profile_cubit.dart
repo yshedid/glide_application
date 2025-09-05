@@ -36,7 +36,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
           currentAvatarUrl = profile['avatar_url'];
         }
 
-        emit(ProfileSuccess());
+        emit(ProfileSuccess(imageUrl: currentAvatarUrl));
       } else {
         emit(ProfileFailure('No user is signed in'));
       }
@@ -55,14 +55,15 @@ class ProfileCubit extends Cubit<ProfileStates> {
       if (newAvatarUrl != null) {
         currentAvatarUrl = newAvatarUrl;
         log('Profile picture uploaded: $newAvatarUrl');
-        emit(ProfileSuccess());
+        emit(ProfileSuccess(imageUrl: currentAvatarUrl));
       } else {
         // User cancelled or no image selected
-        emit(ProfileSuccess());
+        emit(ProfileSuccess(imageUrl: currentAvatarUrl));
       }
     } catch (e) {
       log('Error uploading profile picture: $e');
       emit(ProfileFailure('Failed to upload profile picture'));
     }
   }
+
 }

@@ -182,9 +182,9 @@ class _SelectionRowState extends State<SelectionRow> {
   }
 }
 
-Widget buildAppBar(BuildContext context, String title, {onTap}) {
+Widget buildAppBar(BuildContext context, String title, {Function()? onTap}) {
   return Padding(
-    padding: const EdgeInsets.only(top:10.0),
+    padding: const EdgeInsets.only(top:20.0),
     child: Column(
 
       children: [
