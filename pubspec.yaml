@@ -45,11 +45,26 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   image_picker: ^1.2.0
   path: ^1.9.1
+  flutter_launcher_icons: ^0.14.4
   
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  icons_launcher: ^3.0.2
+
+icons_launcher:
+  image_path: "assets/icon/icon.png"
+  platforms:
+    android:
+      enable: true
+      image_path: "assets/icon/icon.png"
+      adaptive_background_color: '#ffffff'
+      adaptive_foreground_image: "assets/icon/icon.png"
+    ios:
+      enable: true
+      image_path: "assets/icon/icon.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
